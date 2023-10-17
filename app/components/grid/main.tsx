@@ -3,6 +3,8 @@ import * as React from 'react';
 import { GridColumn, GridDetailRowProps, GridDataStateChangeEvent, GridExpandChangeEvent } from '@progress/kendo-react-grid';
 import { IntlService } from '@progress/kendo-react-intl';
 import { DataResult, process, State } from '@progress/kendo-data-query';
+import { Button } from "@progress/kendo-react-buttons";
+import { useRouter } from "next/navigation";
 import dynamic from 'next/dynamic';
 
 const MyGrid: any = dynamic(
@@ -62,6 +64,7 @@ export const GridNextjs = () => {
       locale: 'es'
     }
   ]
+  const router = useRouter();
   const [dataState, setDataState] = React.useState<State>({
     skip: 0,
     take: 20,
@@ -89,8 +92,13 @@ export const GridNextjs = () => {
     setDataResult({ ...dataResult, data: [...dataResult.data] })
   }
 
+  const navigateToIndex = () => {
+    router.push('/');
+  }
+
   return (
     <div>
+      <div><Button onClick={navigateToIndex}>Index Page</Button></div><br />
       <MyGrid
         style={{ height: '700px' }}
         sortable={true}
