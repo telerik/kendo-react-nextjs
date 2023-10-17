@@ -4,12 +4,13 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { Drawer, DrawerContent, DrawerSelectEvent } from "@progress/kendo-react-layout";
 import { Button } from "@progress/kendo-react-buttons";
+import { inboxIcon, calendarIcon, heartIcon, linkIcon, bellIcon, menuIcon } from '@progress/kendo-svg-icons';
 import "./styles.css";
 
 const items = [
   {
     text: "Inbox",
-    icon: "k-i-inbox",
+    svgIcon: inboxIcon,
     selected: true,
     route: "/components/drawer/inbox"
   },
@@ -18,12 +19,12 @@ const items = [
   },
   {
     text: "Notifications",
-    icon: "k-i-bell",
+    svgIcon: bellIcon,
     route: "/components/drawer/notifications"
   },
   {
     text: "Calendar",
-    icon: "k-i-calendar",
+    svgIcon: calendarIcon,
     route: "/components/drawer/calendar"
   },
   {
@@ -31,12 +32,12 @@ const items = [
   },
   {
     text: "Attachments",
-    icon: "k-i-hyperlink-email",
+    svgIcon: linkIcon,
     route: "/components/drawer/attachments"
   },
   {
     text: "Favourites",
-    icon: "k-i-star-outline",
+    svgIcon: heartIcon,
     route: "/components/drawer/favourites"
   }
 ];
@@ -64,12 +65,17 @@ export default function DrawerLayout({
     setSelected(e.itemTarget.props.route);
   };
 
+  const navigateToIndex = () => {
+    router.push('/');
+  }
+
   const selectedItem = setSelectedItem(selected);
 
   return (
     <div>
+      <div><Button onClick={navigateToIndex}>Index Page</Button></div><br />
       <div className="custom-toolbar">
-        <Button icon="menu" fillMode="flat" onClick={handleClick} />
+        <Button svgIcon={menuIcon} fillMode="flat" onClick={handleClick} />
         <span className="mail-box">Mail Box</span>
       </div>
       <Drawer
